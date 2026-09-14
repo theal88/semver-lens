@@ -1,0 +1,19 @@
+{
+  "name": "semver-lens",
+  "version": "0.1.0",
+  "description": "Parse, compare, and diff semantic versions with human-readable or JSON output",
+  "license": "MIT",
+  "author": "theal88",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}
