@@ -50,11 +50,33 @@ formatDiff(result, { json: true })
 `parse` returns `null` on invalid input rather than throwing, so it composes
 well with validation code. Use `parseOrThrow` when you'd rather fail loudly.
 
+### Ranges
+
+```ts
+import { parseRange, rangeToString } from 'semver-lens'
+
+parseRange('^1.2.3')
+// [[{ operator: '>=', version: <1.2.3> }, { operator: '<', version: <2.0.0> }]]
+
+parseRange('1.2.x || >=3.0.0 <4.0.0')
+// two OR branches, each an AND-set of comparators
+
+rangeToString(parseRange('~1.2')!) // '>=1.2.0 <1.3.0'
+```
+
+`parseRange` understands caret (`^`), tilde (`~`), x-ranges (`1.2.x`, `1.x`),
+hyphen ranges (`1.2.3 - 2.3.4`), comparator sets (`>=1.0.0 <2.0.0`), and `||`
+alternation, and normalizes all of them down to plain `>=`/`<`/`=` comparator
+sets. It returns `null` on a malformed range rather than throwing. There is
+no `satisfies(version, range)` yet to actually test a version against the
+parsed result.
+
 ## Status
 
-Early skeleton: parsing, precedence comparison, and diffing are implemented
-and follow the semver 2.0.0 spec's own grammar and comparison rules. Range
-syntax (`^1.2.3`, `~1.2.3`, `>=1.0.0 <2.0.0`) is not implemented yet.
+Early skeleton: parsing, precedence comparison, diffing, and range parsing
+are implemented and follow the semver 2.0.0 spec's grammar and comparison
+rules. Testing a version against a range (`satisfies`) is not implemented
+yet.
 
 ## Install
 

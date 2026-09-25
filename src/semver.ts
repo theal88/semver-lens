@@ -5,7 +5,7 @@ import type { ChangeType, Diff, Version } from './types'
 const SEMVER_RE =
   /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/
 
-function toIdentifier(raw: string): string | number {
+export function toIdentifier(raw: string): string | number {
   // The grammar only allows a bare numeric identifier to be all digits with
   // no leading zero (or "0" itself), so this check doubles as the "is it
   // safe to treat as a number" check.
